@@ -1,0 +1,21 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="personBean" class="com.spring.examples.Person" depends-on="addressBean"
+		c:firstName ="Neeraj"
+		c:lastName = "Girolkar"
+		c:age = "28"
+		c:address-ref = "addressBean"
+		/>
+	
+	<bean id="addressBean" class="com.spring.examples.Address"
+		c:0 = 5
+		c:1 = "Charlotte Street"
+		c:2 = "London"
+		c:3 = "United Kingdom"
+		/>
+
+</beans>

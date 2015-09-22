@@ -1,0 +1,39 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+
+mainClassName = 'com.spring.example.main.Main'
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+dependencies {
+	compile "org.springframework:spring-context:+"
+	compile "org.springframework:spring-core:+"
+	testCompile group: 'junit', name: 'junit', version: '4.+'
+}
+
+jar {
+    baseName = projectname
+    version =  getNextBuildNumber()
+	manifest {
+        attributes 'Main-Class': 'com.spring.example.main.Main'
+    }
+}
+def getNextBuildNumber() {
+	Properties properties = new Properties()
+	File versionProperties = new File('version.properties')
+	properties.load(versionProperties.newDataInputStream())
+	def majorVersion = properties.getProperty('artifactMajorVersion')
+	def minorVersion = properties.getProperty('artifactBuildNumber')
+	Integer nextBuildNumInt = (((properties.getProperty('artifactBuildNumber')) as BigDecimal) + 1)
+	properties.setProperty('artifactBuildNumber', nextBuildNumInt.toString()) 
+	properties.store(versionProperties.newWriter(), null)
+	properties.load(versionProperties.newDataInputStream())
+	def nextBuild = majorVersion + "." + minorVersion
+	return nextBuild
+}
