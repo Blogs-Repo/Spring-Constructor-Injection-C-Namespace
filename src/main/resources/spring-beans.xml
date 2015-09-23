@@ -8,14 +8,12 @@
 		c:firstName ="Neeraj"
 		c:lastName = "Girolkar"
 		c:age = "28"
-		c:address-ref = "addressBean"
-		/>
+		c:address-ref = "addressBean" />
 	
 	<bean id="addressBean" class="com.spring.examples.Address"
-		c:0 = 5
-		c:1 = "Charlotte Street"
-		c:2 = "London"
-		c:3 = "United Kingdom"
-		/>
+		c:_0 = "5"
+		c:_1 = "Charlotte Street"
+		c:_2 = "London"
+		c:_3 = "United Kingdom"/>
 
 </beans>
